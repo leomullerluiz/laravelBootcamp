@@ -6,10 +6,18 @@
     <title>Laravel Bootcamp</title>
 </head>
 <body>
+
+    @auth
+        <p>Você já esta logado</p>
+        <form action="/logout" method="POST">
+            @csrf
+            <button>Log out</button>
+        </form>
+    @else
     <div>
-        <h1>
+        <h2>
             Register
-        </h1>
+        </h2>
         <form action="/register" method="POST">
             @csrf
             <input type="text" name="name" placeholder="name">
@@ -18,5 +26,21 @@
             <input type="submit" value="Register">
         </form>
     </div>
+
+    <div>
+        <h2>
+            Login
+        </h2>
+        <form action="/login" method="POST">
+            @csrf
+            <input type="text" name="loginName" placeholder="name">
+            <input type="password" name="loginPassword" placeholder="password">
+            <input type="submit" value="Log in">
+        </form>
+    </div>
+
+    @endauth
+
+    
 </body>
 </html>
