@@ -23,7 +23,21 @@
                 <input type="submit" value="Create Post">
             </form>
         </div>
-
+        <div>
+            <h2>All Post</h2>
+            @foreach($posts as $post)
+            <div style="background-color: grey; margin: 10px; padding: 10px">
+                <h3>{{$post['title']}} <span style="font-size: 12px; font-weight: 400;">by {{$post->user->email}}</span></h3>
+                <p>{{$post['body']}}</p>
+                <p><a href="/edit-post/{{$post->id}}">Edit</a></p>
+                <form action="/delete-post/{{$post->id}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button>delete</button>
+                </form>
+            </div>
+            @endforeach
+        </div>
 
     @else
     <div>
